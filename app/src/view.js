@@ -5,6 +5,7 @@
  * Note all top level scripts are added to the global scope
  */
 class View {
+  
   constructor(settings) {
     this.settings = settings;
     this.zxpPath = __dirname + settings.zxpPath;
