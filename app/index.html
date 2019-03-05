@@ -9,7 +9,9 @@
   <script type="text/javascript" src="src/installer.js"></script>
   <script type="text/javascript" src="src/buttons.js"></script>
   <link rel="stylesheet" type="text/css" href="main.css">
+
   <script>
+    // dynamically add the <title> element
     const title = document.createElement("title");
     title.innerText = `${settings.humanReadableName} Installer`;
     document.querySelector("head").appendChild(title);
