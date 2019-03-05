@@ -19,7 +19,7 @@ The CEP Extension Installer uses source code found in the well known and popular
   npm run dev
   ```
 
-# Editing the installer for your extension
+# Editing the installer for your extension (TODO)
 
 You need the following things:
 * An extension packaged in Adobe´s ZXP format, with proper timestamping.
