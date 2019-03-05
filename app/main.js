@@ -4,6 +4,9 @@ var BrowserWindow = require('browser-window');  // Module to create native brows
 // Report crashes to our server.
 require('crash-reporter').start();
 
+var isDebug = process.argv[2] === "--dev";
+
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the javascript object is GCed.
 var mainWindow = null;
@@ -19,20 +22,44 @@ app.on('window-all-closed', function() {
 // initialization and ready for creating browser windows.
 app.on('ready', function() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({
-    width: 450,
-    height: 700,
-    'min-width': 450,
-    'min-height': 700,
-    'max-width': 450,
-    'max-height': 700
-  });
+  if (isDebug) {
+    mainWindow = new BrowserWindow({
+      width: 1000,
+      height: 700,
+      'min-width': 1000,
+      'min-height': 700,
+      'max-width': 1920,
+      'max-height': 1920,
+      center: true
+    });
+  }
+  else {
+    var width = 450;
+    var height = 700;
+    mainWindow = new BrowserWindow({
+      width: width,
+      height: height,
+      'min-width': width,
+      'min-height': height,
+      'max-width': width,
+      'max-height': height,
+      center: true
+    });
+  }
+
+  // mainWindow.isDebug = isDebug;
 
   // and load the index.html of the app.
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
-  // Open the devtools.
-  // mainWindow.openDevTools();
+  if (isDebug) {
+    
+    mainWindow.webContents.on('did-finish-load', function () {
+      mainWindow.webContents.send('isDebug', true);
+    });
+    mainWindow.openDevTools();
+  }
+
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {

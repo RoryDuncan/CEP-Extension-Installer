@@ -4,7 +4,7 @@ global.View = function() {
   var body = document.body;
   var view = document.getElementsByClassName('container');
   var installer = global.installer();
-  var remote = require('remote');
+  
   var dialog = remote.require('dialog');
 
   var msg = new global.Messages()
