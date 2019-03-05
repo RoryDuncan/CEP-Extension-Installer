@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="width: 100%; height: 100%; overflow:hidden;">
+<html style="width: 100%; height: 100%; overflow:auto;">
 
 <head lang="en">
   <meta charset="UTF-8">
@@ -9,7 +9,12 @@
   <script type="text/javascript" src="src/installer.js"></script>
   <script type="text/javascript" src="src/buttons.js"></script>
   <link rel="stylesheet" type="text/css" href="main.css">
-  <title>Extension Installer</title>
+  <script>
+    const title = document.createElement("title");
+    title.innerText = `${settings.humanReadableName} Installer`;
+    document.querySelector("head").appendChild(title);
+  </script>
+  
 </head>
 
 <body>
