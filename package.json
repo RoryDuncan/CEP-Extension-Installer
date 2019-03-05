@@ -10,21 +10,21 @@
   },
   "scripts": {
     "dev": "./node_modules/.bin/electron ./app",
-    "clean": "rm -rf ./release",
-    "clean:osx": "rm -rf ./release/osx",
-    "clean:win": "rm -rf ./release/win",
+    "clean": "rm -rf release",
+    "clean:osx": "rm -rf release/osx",
+    "clean:win": "rm -rf release/win",
     "build": "npm run clean && npm run build:osx && npm run build:win",
-    "build:osx": "npm run clean:osx && ./node_modules/.bin/electron-packager ./app \"Extension Installer\" --out=release/osx --platform=darwin --arch=x64 --version=0.25.3 --icon=assets/osx/icon.icns",
-    "build:win": "npm run clean:win && ./node_modules/.bin/electron-packager ./app \"Extension Installer\" --out=release/win --platform=win32 --arch=ia32 --version=0.25.3 --icon=assets/win/icon.ico"
+    "build:osx": "npm run clean:osx && \"./node_modules/.bin/electron-packager\" app \"Extension Installer\" --out=release/osx --platform=darwin --arch=x64 --version=0.25.3 --icon=assets/osx/icon.icns",
+    "build:win": "npm run clean:win && \"./node_modules/.bin/electron-packager\" app \"Extension Installer\" --out=release/win --platform=win32 --arch=ia32 --version=0.25.3 --icon=assets/win/icon.ico"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/RoryDuncan/CEP-Extension-Installer"
   },
   "author": "Hennamann",
   "license": "GPL2",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/RoryDuncan/CEP-Extension-Installer/issues"
   },
   "homepage": ""
 }
