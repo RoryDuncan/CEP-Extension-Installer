@@ -32,7 +32,7 @@ app.on('ready', function() {
   else {
 
     var width = settings.appWidth;
-    var height = setting.appHeight;
+    var height = settings.appHeight;
 
     mainWindow = new BrowserWindow({
       width: width,

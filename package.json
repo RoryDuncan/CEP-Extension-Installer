@@ -9,7 +9,8 @@
     "electron-prebuilt": "^0.25.3"
   },
   "scripts": {
-    "dev": "./node_modules/.bin/electron ./app/main.js --dev",
+    "preview": "./node_modules/.bin/electron ./app/main.js",
+    "dev": "npm run preview -- --dev",
     "clean": "rm -rf release",
     "clean:osx": "rm -rf release/osx",
     "clean:win": "rm -rf release/win",
