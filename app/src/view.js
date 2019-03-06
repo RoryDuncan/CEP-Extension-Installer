@@ -1,7 +1,5 @@
 "use strict";
 
-const installer = global.installer;
-
 /** View
  * Controls are visual state
  * Note all top level scripts are added to the global scope
@@ -11,6 +9,8 @@ class View {
   constructor(settings) {
     this.settings = settings;
     this.zxpPath = __dirname + settings.zxpPath;
+
+    this.installer = new Installer(this.zxpPath);
 
     // ui
     this.$appTitle = document.querySelector(".title");
@@ -63,9 +63,9 @@ class View {
   installExtension() {
 
     const that = this;
-    const promise = installer.install();
+    const promise = this.installer.install();
 
-    promise.then(that.postInstall, that.failed);
+    promise.then(that.postInstall.bind(this), that.failed.bind(this));
 
     return promise;
   }

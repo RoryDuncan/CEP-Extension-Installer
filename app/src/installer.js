@@ -1,23 +1,11 @@
+"use strict";
+
 var platform = require("os").platform;
 var install_process = require("child_process");
 var path = require('path');
 
-function targetPath() {
+var errors = (new global.Messages()).errors;
 
-  switch (platform()) {
-    case "darwin":
-      return "bin/OSX/Contents/MacOS/ExManCmd";
-      break;
-    case "win32":
-      return "bin/WINDOWS/ExManCmd.exe";
-    case "win64":
-      return "bin/WINDOWS/ExManCmd.exe";
-  }
-  return null;
-}
-
-
-var errors = (new global.Messages()).errors
 
 class Installer {
 
@@ -28,14 +16,31 @@ class Installer {
     var prefix = (platform() == "darwin") ? "--" : "/"
     this.installCommand = `${prefix}install`;
     this.uninstallCommand = `${prefix}uninstall`;
-    this.target = targetPath();
+    this.target = this.targetPath();
 
+    this.install = this.install.bind(this);
+  }
+
+  targetPath() {
+
+    switch (platform()) {
+      case "darwin":
+        return "bin/OSX/Contents/MacOS/ExManCmd";
+        break;
+      case "win32":
+        return "bin/WINDOWS/ExManCmd.exe";
+      case "win64":
+        return "bin/WINDOWS/ExManCmd.exe";
+    }
+    return null;
   }
 
   install() {
+    const that = this;
+
     return new Promise(function (resolve, reject) {
 
-      var spawn = install_process.spawn(path.join(__dirname, target_path()), [this.installCommand, this.zxpPath]);
+      var spawn = install_process.spawn(path.join(__dirname, that.target), [that.installCommand, that.zxpPath]);
 
       spawn.stdout.on('data', function (data) {
         console.log('stdout: ' + data.toString());
@@ -72,3 +77,5 @@ class Installer {
   }
 
 }
+
+global.Installer = Installer;
