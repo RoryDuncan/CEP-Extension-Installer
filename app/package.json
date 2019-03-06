@@ -5,5 +5,7 @@
   "main": "main.js",
   "zxpPath": "/bin/extension.zxp",
   "appWidth": 460,
-  "appHeight": 700
+  "appHeight": 700,
+  "supportURL": "",
+  "learnMoreURL": ""
 }

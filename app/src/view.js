@@ -1,5 +1,7 @@
 "use strict";
 
+var shell = require('shell');
+
 /** View
  * Controls are visual state
  * Note all top level scripts are added to the global scope
@@ -30,12 +32,20 @@ class View {
       el.innerText = settings.humanReadableName;
     }));
 
+    // event listeners
     this.$installBtn.addEventListener("click", this.installClicked.bind(this));
     this.$exitBtn.addEventListener("click", this.cancelClicked.bind(this));
-    // this.$cancelBtn.addEventListener("click", this.cancelClicked.bind(this));
-    
+
     this.$installBtn.attributes.removeNamedItem("disabled");
     this.$exitBtn.attributes.removeNamedItem("disabled");
+
+
+    // support url of errors view
+    document.querySelector(".support-url").addEventListener("click", this.supportURLClicked.bind(this));
+
+    // learn more button
+    document.querySelector(".learn-more").addEventListener("click", this.learnMoreClicked.bind(this))
+
 
     this.$carousel = document.querySelector(".carousel");
 
@@ -80,9 +90,23 @@ class View {
   }
 
   failed(error) {
-    this.changeView(this.views.$error);
-    this.views.$error.querySelector(".message").innerText = error;
-    console.log(error);
+    
+    const $errorsView = this.views.$error;
+
+    if (this.settings.learnMoreURL) {
+      this.$carousel.style.display = "none";
+    }
+
+    this.changeView($errorsView);
+
+    // update the text with the error message
+    $errorsView.querySelector(".message").innerText = error;
+
+
+    console.warn(error);
+    if (this.settings.supportURL) {
+      $errorsView.querySelector(".support").style.display = null;
+    }
   }
 
   closeApp() {
@@ -94,13 +118,22 @@ class View {
     this.closeApp();
   }
 
+  supportURLClicked() {
+    shell.openExternal(this.settings.supportURL);
+  }
+
+  learnMoreClicked() {
+    shell.openExternal(this.settings.learnMoreURL);
+  }
+
   installClicked() {
-    
+
     this.changeView(this.views.$installing);
-    this.$carousel.style.display = null;
+    if (this.settings.learnMoreURL) {
+      this.$carousel.style.display = null;
+    }
 
     this.installExtension();
-    // this.$cancelBtn.attributes.removeNamedItem("disabled");
   }
 
 }
