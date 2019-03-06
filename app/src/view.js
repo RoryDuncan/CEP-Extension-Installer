@@ -13,10 +13,13 @@ class View {
     // ui
     this.$appTitle = document.querySelector(".title");
     this.$appVersion = document.querySelector(".version");
-    this.$message = document.querySelector(".message");
+
     this.$progressBar = document.querySelector(".progress-bar");
     this.$progressTrack = document.querySelector(".progress-track");
 
+    this.$installBtn = document.querySelector(".install");
+    this.$exitBtn = document.querySelector(".exit");
+    // this.$cancelBtn = document.querySelector(".cancel");
 
     this.$appTitle.innerText = settings.humanReadableName;
     this.$appVersion.innerText = `v${settings.version || "1.0"}`;
@@ -25,20 +28,37 @@ class View {
       el.innerText = settings.humanReadableName;
     }));
 
+    this.$installBtn.addEventListener("click", this.installClicked.bind(this));
+    this.$exitBtn.addEventListener("click", this.cancelClicked.bind(this));
+    // this.$cancelBtn.addEventListener("click", this.cancelClicked.bind(this));
+    
+    this.$installBtn.attributes.removeNamedItem("disabled");
+    this.$exitBtn.attributes.removeNamedItem("disabled");
+
+    this.$carousel = document.querySelector(".carousel");
+
+    this.views = {
+      $actions:     document.querySelector(".view.view--actions"),
+      $installing:  document.querySelector(".view.view--installing"),
+      $error:       document.querySelector(".view.view--errors"),
+      $complete:    document.querySelector(".view.view--complete")
+    }
+
+    this.activeClassName = "view--active";
+    this.$activeView = document.querySelector(`.${this.activeClassName}`);
+    console.log(this);
   }
 
-  /**
-   * Update the installer text
-   */
-  set message(value) {
-    this.$message.innerText = value;
+  changeView($ref) {
+    this.$activeView.classList.remove(this.activeClassName);
+    $ref.classList.add(this.activeClassName);
+    this.$activeView = $ref;
   }
 
   /**
    * Begins installing the extension
    */
   installExtension() {
-    this.message = `Installing ${this.settings["human-readable"]}`;
 
     const that = this;
     const promise = installer.install();
@@ -53,21 +73,27 @@ class View {
   }
 
   postInstall() {
-    this.message = "Success!";
+    console.log("success");
   }
 
   failed(error) {
-    this.message = error;
-  }
-
-  stopProgressAnimation() {
-    this.$progressTrack.style.animationIterationCount = 1;
-    this.$progressTrack.style.width = "100%";
+    console.log(error);
   }
 
   closeApp() {
     var window = remote.getCurrentWindow();
     window.close();
+  }
+
+  cancelClicked() {
+    this.closeApp();
+  }
+
+  installClicked() {
+    console.log("hey");
+    this.changeView(this.views.$installing);
+    this.$carousel.style.display = null;
+    // this.$cancelBtn.attributes.removeNamedItem("disabled");
   }
 
 }

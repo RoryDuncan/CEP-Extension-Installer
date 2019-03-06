@@ -68,6 +68,10 @@ button {
   min-width: 8rem;
 }
 
+button[disabled] {
+  opacity: 0.5;
+}
+
 button.primary {
   background-color: #1373E6;
   color: #eef;
@@ -97,6 +101,15 @@ body > footer {
 
 article.view {
   text-align: center;
+}
+
+.view h1 {
+  font-weight: 400;
+  color: #fff;
+}
+
+.view {
+  color: #b2b2b2;
 }
 
 .title,
@@ -139,8 +152,12 @@ article.view {
 }
 
 .progressContainer {
-  background: #c2c2c2;
-  height: 5px;
+  position: relative;
+  background: #222;
+  height: 6px;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  overflow: hidden;
 }
 
 .views > * {
@@ -161,7 +178,7 @@ article.view {
 
 #progressTrack {
     background: #1373E6;
-    height: 5px;
+    height: 6px;
     position: absolute;
     animation: loader 2s;
     -webkit-animation: loader 2s;
@@ -169,7 +186,7 @@ article.view {
     -webkit-animation-iteration-count: infinite;
     transition-timing-function: linear;
     -webkit-transition-timing-function: linear;  
-	margin-left: 0;
+  margin-left: 0;
 }
 
 @keyframes loader {

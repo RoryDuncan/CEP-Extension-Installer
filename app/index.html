@@ -27,29 +27,34 @@
       <h1 class="title"></h1>
       <h2 class="version"></h2>
     </hgroup>
+
   </header>
 
   <main class="views">
 
     <article class="view view--actions view--active">
       <h1>Get Started</h1>
-      <p>Use this tool to install <span class="app-name">...</span> onto this computer.</p>
+      <p>Use this tool to install the <span class="app-name">...</span> extension onto this computer.</p>
       <section class="actions">
-        <button class="primary">Install <span class="app-name"></span></button>
+        <button class="install primary" disabled>Install</button>
         <span>or</span>
-        <button class="secondary">Cancel</button>
+        <button class="exit secondary" disabled>Exit</button>
       </section>
     </article>
 
-    <article class="view view--installation">
-      <h1>Installation</h1>
+    <article class="view view--installing">
+      <h1>Installing...</h1>
+      <div class="progressContainer">
+        <div id="progressTrack"></div>
+      </div>
+      <!-- <button class="cancel secondary" disabled>Cancel</button> -->
     </article>
 
     <article class="view view--errors">
       <h1>Errors</h1>
     </article>
 
-    <article class="view view--end">
+    <article class="view view--complete">
       <h1>Installation Complete!</h1>
       <p>Extension installed successfully.</p>
       <p>You will need to restart any open Adobe Applications for the Extension to take effect.</p>
