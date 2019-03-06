@@ -28,7 +28,7 @@ You need the following things:
 * An extension packaged in Adobe´s ZXP format, with proper timestamping.
 * An icon for your extension (If you do not have one, use the generic ZXP icon that comes with the repository.)
 
-1.  Open `app/package.json` and edit the fields apposite to your extension`.
+1.  Open `app/package.json` and edit the fields apposite to your extension.
     * `humanReadableName` — the product name of your extension.
     * `version` — the product version of your extension.
     * `zxpPath` — The path to your `.zxp` file, relative to `/app`. You can name it whatever you would like.
