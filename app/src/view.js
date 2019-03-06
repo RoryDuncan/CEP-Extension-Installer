@@ -1,14 +1,16 @@
 "use strict";
 
-var shell = require('shell');
+const shell = require('shell');
+const remote = require('remote');
 
 /** View
- * Controls are visual state
+ * Controls our visual state
  * Note all top level scripts are added to the global scope
  */
 class View {
   
   constructor(settings) {
+
     this.settings = settings;
     this.zxpPath = __dirname + settings.zxpPath;
 
@@ -22,22 +24,29 @@ class View {
     this.$progressTrack = document.querySelector(".progress-track");
 
     this.$installBtn = document.querySelector(".install");
-    this.$exitBtn = document.querySelector(".exit");
+    this.$exitBtns = document.querySelectorAll(".exit");
     // this.$cancelBtn = document.querySelector(".cancel");
 
     this.$appTitle.innerText = settings.humanReadableName;
     this.$appVersion.innerText = `v${settings.version || "1.0"}`;
 
+    // update places in the app where we expect the name of our extension
     this.$appName = Array.prototype.forEach.call(document.querySelectorAll(".app-name"), (function(el){
       el.innerText = settings.humanReadableName;
     }));
 
     // event listeners
     this.$installBtn.addEventListener("click", this.installClicked.bind(this));
-    this.$exitBtn.addEventListener("click", this.cancelClicked.bind(this));
+    
+    // add event lsiteners to all .exit elements
+    const exitApp = this.cancelClicked.bind(this);
+    Array.prototype.forEach.call(this.$exitBtns, function(node){
+      node.addEventListener("click", exitApp);
+      node.attributes.removeNamedItem("disabled");
+    });
 
+    // remove disabled from the first two options
     this.$installBtn.attributes.removeNamedItem("disabled");
-    this.$exitBtn.attributes.removeNamedItem("disabled");
 
 
     // support url of errors view
