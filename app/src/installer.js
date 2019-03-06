@@ -4,7 +4,7 @@ var platform = require("os").platform;
 var install_process = require("child_process");
 var path = require('path');
 
-var errors = (new global.Messages()).errors;
+var errors = global.ErrorCodes;
 
 
 class Installer {

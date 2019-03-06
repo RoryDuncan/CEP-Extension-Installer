@@ -95,7 +95,7 @@ class View {
   }
 
   installClicked() {
-    console.log("hey");
+    
     this.changeView(this.views.$installing);
     this.$carousel.style.display = null;
 
