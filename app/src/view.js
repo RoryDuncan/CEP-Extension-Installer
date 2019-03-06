@@ -11,10 +11,19 @@ class View {
     this.zxpPath = __dirname + settings.zxpPath;
 
     // ui
-    this.$appName = document.querySelector(".app__name");
+    this.$appTitle = document.querySelector(".title");
+    this.$appVersion = document.querySelector(".version");
     this.$message = document.querySelector(".message");
     this.$progressBar = document.querySelector(".progress-bar");
     this.$progressTrack = document.querySelector(".progress-track");
+
+
+    this.$appTitle.innerText = settings.humanReadableName;
+    this.$appVersion.innerText = `v${settings.version || "1.0"}`;
+
+    this.$appName = Array.prototype.forEach.call(document.querySelectorAll(".app-name"), (function(el){
+      el.innerText = settings.humanReadableName;
+    }));
 
   }
 

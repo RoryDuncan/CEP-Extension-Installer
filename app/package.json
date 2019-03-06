@@ -1,9 +1,9 @@
 {
   "name": "your-app",
-  "humanReadableName": "<Your App>",
-  "version": "0.1.0",
+  "humanReadableName": "Your App",
+  "version": "0.0",
   "main": "main.js",
   "zxpPath": "/bin/extension.zxp",
-  "appWidth": 450,
+  "appWidth": 460,
   "appHeight": 700
 }

@@ -20,7 +20,48 @@
 </head>
 
 <body>
-  <div class="container">
+  
+  <header class="extension-details">
+    <img class="icon icon--large" src="images/prodIcon.png" alt="" />
+    <hgroup>
+      <h1 class="title"></h1>
+      <h2 class="version"></h2>
+    </hgroup>
+  </header>
+
+  <main class="views">
+
+    <article class="view view--actions view--active">
+      <h1>Get Started</h1>
+      <p>Use this tool to install <span class="app-name">...</span> onto this computer.</p>
+      <section class="actions">
+        <button class="primary">Install <span class="app-name"></span></button>
+        <span>or</span>
+        <button class="secondary">Cancel</button>
+      </section>
+    </article>
+
+    <article class="view view--installation">
+      <h1>Installation</h1>
+    </article>
+
+    <article class="view view--errors">
+      <h1>Errors</h1>
+    </article>
+
+    <article class="view view--end">
+      <h1>Installation Complete!</h1>
+      <p>Extension installed successfully.</p>
+      <p>You will need to restart any open Adobe Applications for the Extension to take effect.</p>
+    </article>
+  </main>
+
+  <footer class="carousel" style="display: none">
+    <p class="message">While you're waiting, why not check some of my other extensions!</p>
+    <button class="primary" onclick="learnMoreClicked()">Learn More</button>
+  </footer>
+  
+  <!-- <div class="container">
 
     <div id="spinnerScreen" class="screen">
       <div class="spinnerContent centerMid">
@@ -64,7 +105,8 @@
             More</a></div>
       </div>
     </div>
-  </div>
+  </div> -->
+
   <script type="text/javascript" src="src/main.js"></script>
 </body>
 
