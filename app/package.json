@@ -1,8 +1,9 @@
 {
   "name": "your-app",
+  "main": "main.js",
+  
   "humanReadableName": "Your Extension",
   "version": "0.0",
-  "main": "main.js",
   "zxpPath": "/bin/extension.zxp",
   "appWidth": 460,
   "appHeight": 700,
