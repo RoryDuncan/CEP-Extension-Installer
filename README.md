@@ -2,7 +2,10 @@
 
 CEP Extension Installer is a redistributable installer for CEP extensions; it is meant to be used by extension developers as an efficient and professional way to package their extensions for installation outside of the Adobe Add-ons service.
 
-![](http://i.cubeupload.com/DcSbMN.png)
+
+
+![image](https://user-images.githubusercontent.com/766828/53858336-9b9a5700-3f8e-11e9-9670-bd987ebfe95e.png)
+
 
 # How it works
 
@@ -25,12 +28,12 @@ You need the following things:
 * An extension packaged in Adobe´s ZXP format, with proper timestamping.
 * An icon for your extension (If you do not have one, use the generic ZXP icon that comes with the repository.)
 
-1. Open `app/package.json` and edit the fields apposite to your extension`.
-* `humanReadableName` — the product name of your extension.
-* `version` — the product version of your extension.
-* `zxpPath` — The path to your `.zxp` file, relative to `/app`. You can name it whatever you would like.
-* `supportURL` — If your extension fails to install for some reason, the error page will display a button that will navigate them to `supportURL`. If falsey, it won't display the link.
-* `learnMoreURL` — While installing and after installing you can display a button that will navigate them to `learnMoreURL`. If falsey, it won't display the link. You may want to edit the `p.message` inside of `index.html`.
+1.  Open `app/package.json` and edit the fields apposite to your extension`.
+    * `humanReadableName` — the product name of your extension.
+    * `version` — the product version of your extension.
+    * `zxpPath` — The path to your `.zxp` file, relative to `/app`. You can name it whatever you would like.
+    * `supportURL` — If your extension fails to install for some reason, the error page will display a button that will navigate them to `supportURL`. If falsey, it won't display the link.
+    * `learnMoreURL` — While installing and after installing you can display a button that will navigate them to `learnMoreURL`. If falsey, it won't display the link. You may want to edit the `p.message` inside of `index.html`.
 
 2.  Copy your extension file into `/bin/` directory. Make sure it matches the `zxpPath` inside of `package.json`.
 
