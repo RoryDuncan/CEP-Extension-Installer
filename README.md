@@ -19,27 +19,30 @@ The CEP Extension Installer uses source code found in the well known and popular
   npm run dev
   ```
 
-# Editing the installer for your extension (TODO)
+# Editing the installer for your extension
 
 You need the following things:
 * An extension packaged in Adobe´s ZXP format, with proper timestamping.
 * An icon for your extension (If you do not have one, use the generic ZXP icon that comes with the repository.)
 
-1. Head into the index.html file located within the `assets` folder and modify the following HTML fields:
-* `productName` - Replace it with the name of your extension.
-* `productVersion` - Replace it with the version number of the extension you are installing.
+1. Open `app/package.json` and edit the fields apposite to your extension`.
+* `humanReadableName` — the product name of your extension.
+* `version` — the product version of your extension.
+* `zxpPath` — The path to your `.zxp` file, relative to `/app`. You can name it whatever you would like.
+* `supportURL` — If your extension fails to install for some reason, the error page will display a button that will navigate them to `supportURL`. If falsey, it won't display the link.
+* `learnMoreURL` — While installing and after installing you can display a button that will navigate them to `learnMoreURL`. If falsey, it won't display the link. You may want to edit the `p.message` inside of `index.html`.
 
-2. Replace the `prodIcon.png` file located in the images folder with an icon for your extension, if you do not have one, feel free to keep the default one.
+2.  Copy your extension file into `/bin/` directory. Make sure it matches the `zxpPath` inside of `package.json`.
 
-3. Head into the `bin` directory and add your extension in `.ZXP` format there, unless you want to edit the code, I also recommend renaming your extensions to `extension.zxp`.
-
-4. If you want to change the icons for the windows `.exe` or mac `.app` files, replace the `.ico` file(Windows) and the `.icns` file(Mac) in the assets folder with your custom icons.
+3.  If you want to change the icons for the windows `.exe` or mac `.app` files, replace the `.ico` file(Windows) and the `.icns` file(Mac) in the assets folder with your custom icons.
 
 ### Extra Steps
 
 The installer also comes with an "ad" area for advertising a website, or something similar. To modify it locate the `carousel` div and edit the `description` element with whatever text you want to display. You can also change the text of the button. 
 
 If you want to remove the "ad" from your extension, just comment out the `carousel` div from start to end. 
+
+If you want to replace the `prodIcon.png`, the file is located in the images folder. If you do not have one, feel free to keep the default one.
 
 # Compiling (OS X)
 

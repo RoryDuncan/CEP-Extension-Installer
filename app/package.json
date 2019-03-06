@@ -1,12 +1,11 @@
 {
-  "name": "your-app",
+  "name": "your-extension",
   "main": "main.js",
-  
+  "appWidth": 460,
+  "appHeight": 700,
   "humanReadableName": "Your Extension",
   "version": "0.0",
   "zxpPath": "/bin/extension.zxp",
-  "appWidth": 460,
-  "appHeight": 700,
   "supportURL": "",
   "learnMoreURL": ""
 }
