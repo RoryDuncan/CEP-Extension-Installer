@@ -22,11 +22,15 @@ The CEP Extension Installer uses source code found in the well known and popular
   npm run dev
   ```
 
-# Editing the installer for your extension
+# Setting up the installer
 
 You need the following things:
 * An extension packaged in Adobe´s ZXP format, with proper timestamping.
 * An icon for your extension (If you do not have one, use the generic ZXP icon that comes with the repository.)
+
+## Editing `app/package.json`
+
+_Note: this is the package.json inside of the app folder, **not** the top-level `package.json`_
 
 1.  Open `app/package.json` and edit the fields apposite to your extension.
     * `humanReadableName` — the product name of your extension.
@@ -41,9 +45,8 @@ You need the following things:
 
 ### Extra Steps
 
-The installer also comes with an "ad" area for advertising a website, or something similar. To modify it locate the `carousel` div and edit the `description` element with whatever text you want to display. You can also change the text of the button. 
-
-If you want to remove the "ad" from your extension, just comment out the `carousel` div from start to end. 
+The installer also comes with an "ad" area for advertising a website, or something similar. To modify it locate the `carousel` div and edit the `<p>` element with whatever text you want to display. You can also change the text of the button. 
+The button will link to `learnMoreURL` inside of `package.json`. See the `package.json`
 
 If you want to replace the `prodIcon.png`, the file is located in the images folder. If you do not have one, feel free to keep the default one.
 
@@ -75,7 +78,7 @@ You can only compile the windows executable on Windows; you have to use a Mac to
   ```
 2. You should find the compiled Windows binary in the `win` folder within the `releases` folder.
 
-### Extra Steps
+### Packaging for Distribution
 
 Since a Mac app is just a folder, it can easily be packaged, distributed and be "self-contained," in the case of Windows, this is not the case, and the installer requires several files and folders to function on Windows, making the packaging of your extension rather troublesome. 
 
