@@ -1,5 +1,7 @@
 "use strict";
 
+const installer = global.installer;
+
 /** View
  * Controls are visual state
  * Note all top level scripts are added to the global scope
@@ -42,7 +44,7 @@ class View {
       $installing:  document.querySelector(".view.view--installing"),
       $error:       document.querySelector(".view.view--errors"),
       $complete:    document.querySelector(".view.view--complete")
-    }
+    };
 
     this.activeClassName = "view--active";
     this.$activeView = document.querySelector(`.${this.activeClassName}`);
@@ -74,9 +76,12 @@ class View {
 
   postInstall() {
     console.log("success");
+    this.changeView(this.views.$complete);
   }
 
   failed(error) {
+    this.changeView(this.views.$error);
+    this.views.$error.querySelector(".message").innerText = error;
     console.log(error);
   }
 
@@ -93,6 +98,8 @@ class View {
     console.log("hey");
     this.changeView(this.views.$installing);
     this.$carousel.style.display = null;
+
+    this.installExtension();
     // this.$cancelBtn.attributes.removeNamedItem("disabled");
   }
 
