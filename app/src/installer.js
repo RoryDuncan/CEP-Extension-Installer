@@ -26,7 +26,6 @@ class Installer {
     switch (platform()) {
       case "darwin":
         return "bin/OSX/Contents/MacOS/ExManCmd";
-        break;
       case "win32":
         return "bin/WINDOWS/ExManCmd.exe";
       case "win64":
