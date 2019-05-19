@@ -6,7 +6,8 @@
   "dependencies": {
     "electron-builder": "^1.1.0",
     "electron-packager": "^4.2.0",
-    "electron-prebuilt": "^0.25.3"
+    "electron-prebuilt": "^0.25.3",
+    "sudo-prompt": "^8.2.5"
   },
   "scripts": {
     "preview": "./node_modules/.bin/electron ./app/main.js",

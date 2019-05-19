@@ -3,6 +3,10 @@
 var platform = require("os").platform;
 var install_process = require("child_process");
 var path = require('path');
+var sudo = require('sudo-prompt');
+var options = {
+  name: 'Fuse Fonts Installer'
+};
 
 var errors = global.ErrorCodes;
 
@@ -36,36 +40,23 @@ class Installer {
 
   install() {
     const that = this;
-
+    const successfulMessage = "Installation Successful";
     return new Promise(function (resolve, reject) {
-
-      var spawn = install_process.spawn(path.join(__dirname, that.target), [that.installCommand, that.zxpPath]);
-
-      spawn.stdout.on('data', function (data) {
-        console.log('stdout: ' + data.toString());
-        var logbits = /-(\d+)/.exec(data.toString());
-        var code = logbits && logbits[1] ? parseInt(logbits[1]) : null;
-
-        if (code === null) {
-          return;
+      const command = [path.join(__dirname, that.target), that.installCommand, that.zxpPath].join(" ");
+      
+      sudo.exec(command, options, function(error, stdout, stderr) {
+        
+        console.log(stdout, stderr);
+        if (error) {
+          console.warn("error executing sudo");
+          return reject(error);
         }
 
-        reject(errors.get(code) || 'Error: ' + data.toString());
-      });
+        if (stdout.includes(successfulMessage)) {
+          return resolve();
+        }
 
-      spawn.stderr.on('data', function (data) {
-        console.log('stderr: ' + data.toString());
-        var logbits = /(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}) : ([A-Z]+)\s+(.*)/.exec(data.toString());
-        var date = logbits[1];
-        var time = logbits[2];
-        var level = logbits[3];
-        var message = logbits[4];
-        if (level === 'ERROR') { reject(message); }
-      });
-
-      // code 0 => success
-      spawn.on('exit', function (code) {
-        if (code == 0) { resolve() }
+        reject(stderr);
       });
 
     });
