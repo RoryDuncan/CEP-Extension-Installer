@@ -30,3 +30,4 @@ node_modules
 release/
 
 *.zxp
+.DS_Store
