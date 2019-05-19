@@ -46,17 +46,23 @@ class Installer {
       
       sudo.exec(command, options, function(error, stdout, stderr) {
         
-        console.log(stdout, stderr);
+        console.log({stdout, stderr});
         if (error) {
           console.warn("error executing sudo");
-          return reject(error);
+
+          let message = error.message || "An unknown error occurred.";
+          if (message.toLowerCase() === "user did not grant permission.") {
+            message = message.replace("User", "You");
+          }
+
+          return reject(message);
         }
 
         if (stdout.includes(successfulMessage)) {
           return resolve();
         }
 
-        reject(stderr);
+        reject(stderr || stdout);
       });
 
     });
